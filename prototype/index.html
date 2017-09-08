@@ -9,61 +9,12 @@
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
             crossorigin="anonymous"></script>
 
-    <script>
+    <script src="canvasEngine.js"></script>
 
-        var canvas = document.getElementById('mainScreen');
-        var ctx = canvas.getContext('2d');
+    <link href="prototype.css" type="text/css">
 
-        /*
-        $("body").on("keydown", function(event){
-
-            console.log("Pressed");
-
-            $("#player").position(
-                my: "center",
-                of:  "#player"
-
-            );
-        });*/
-
-        $(document).on("keydown", function(event){
-            var key = event.which;
-            console.log("Pressed");
-        });
-
-
-
-    </script>
-
-    <style>
-        .mainBoard{
-            width: 600px;
-            height: 600px;
-            background-color: #9ccff4;
-            margin: auto;
-            /*position: absolute;*/
-        }
-
-        #mainScreen{
-            width: 600px;
-            height: 600px;
-            margin: auto;
-        }
-
-        img{
-            width: 10%;
-            position: relative;
-            top: 0;
-            left: 0;
-        }
-    </style>
 </head>
-<body>
-    <!--
-    <section id="screen" class="mainBoard">
-        <img id="player" src="../black/svg/chevron-up.svg">
-    </section>
-    -->
+<body onload="initialize()">
 
     <canvas id="mainScreen">Not supported on this browser.</canvas>
 

@@ -1,0 +1,21 @@
+/*.mainBoard{
+    width: 600px;
+    height: 600px;
+    background-color: #9ccff4;
+    margin: auto;
+    position: absolute;
+}*/
+
+#mainScreen{
+    width: 600px;
+    height: 600px;
+    margin: auto;
+}
+
+/*
+img{
+    width: 10%;
+    position: relative;
+    top: 0;
+    left: 0;
+}*/
