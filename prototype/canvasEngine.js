@@ -1,31 +1,37 @@
+$(document).ready(initialize);
+
+var game = null;
+
+var action = [0,0,0,0];
+
+var img = new Image();
+
 /*
     Main Canvas Setup Function
  */
 function initialize() {
-    var canvas = document.getElementById('mainScreen');
-    var ctx = canvas.getContext('2d');
-
-    var img = new Image();
-    img.onload = function(){
-        ctx.drawImage(img, 0, 0, 100, 100);
-    }
 
     img.src = "chevron-up.svg";
 
-    //ctx.fillRect(25,25,100,100);
 }
 
-/*
-$("body").on("keydown", function(event){
+function draw(){
+    var ctx = document.getElementById('mainScreen').getContext('2d');
 
-    console.log("Pressed");
+    $('canvas').attr({
+        'width':"600px",
+        'height':"600px"
+    });
 
-    $("#player").position(
-        my: "center",
-        of:  "#player"
+    ctx.translate(300, 300);
 
-    );
-});*/
+    game = ctx;
+
+    img.onload = function(){
+        ctx.drawImage(img, 0, 0, 50, 50);
+    };
+
+}
 
 /*
     Input Functions
@@ -33,5 +39,29 @@ $("body").on("keydown", function(event){
 
 $(document).on("keydown", function(event){
     var key = event.which;
-    console.log("Pressed");
+    console.log("Pressed: "+key);
+
+    switch(key){
+        case 38:
+            game.save();
+            game.translate(0, 5);
+            game.restore();
+            break;
+        case 40:
+            game.save();
+            game.translate(0,-5);
+            game.restore();
+            break;
+        case 37:
+            game.save();
+            game.translate(-5,0);
+            game.restore();
+            break;
+        case 39:
+            game.save();
+            game.translate(5, 0);
+            game.restore();
+            break;
+        default:
+    }
 });

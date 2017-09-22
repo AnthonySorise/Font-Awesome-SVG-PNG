@@ -12,6 +12,13 @@
     margin: auto;
 }
 
+.windowArea{
+    background-color: grey;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
 /*
 img{
     width: 10%;
