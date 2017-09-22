@@ -2,35 +2,45 @@ $(document).ready(initialize);
 
 var game = null;
 
-var action = [0,0,0,0];
-
 var img = new Image();
+
+var playerX = -25;
+var playerY = -25;
+
+var canvas = null;
+var ctx = null;
 
 /*
     Main Canvas Setup Function
  */
 function initialize() {
 
+    canvas = document.getElementById('mainScreen');
+    ctx = canvas.getContext('2d');
+
     img.src = "chevron-up.svg";
 
+    draw();
 }
 
 function draw(){
-    var ctx = document.getElementById('mainScreen').getContext('2d');
 
     $('canvas').attr({
         'width':"600px",
         'height':"600px"
     });
 
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0,0,600,600);
+
     ctx.translate(300, 300);
 
-    game = ctx;
 
     img.onload = function(){
-        ctx.drawImage(img, 0, 0, 50, 50);
+        ctx.drawImage(img, playerX, playerY, 50, 50);
     };
 
+    game = ctx;
 }
 
 /*
@@ -38,29 +48,33 @@ function draw(){
  */
 
 $(document).on("keydown", function(event){
-    var key = event.which;
+    var key = event.key;
     console.log("Pressed: "+key);
 
     switch(key){
-        case 38:
-            game.save();
-            game.translate(0, 5);
-            game.restore();
+        case 'ArrowUp':
+            game.clearRect(-300,-300,canvas.width, canvas.height);
+            ctx.fillRect(-300,-300,600,600);
+            playerY-=5;
+            ctx.drawImage(img, playerX, playerY, 50, 50);
             break;
-        case 40:
-            game.save();
-            game.translate(0,-5);
-            game.restore();
+        case 'ArrowDown':
+            game.clearRect(-300,-300,canvas.width, canvas.height);
+            ctx.fillRect(-300,-300,600,600);
+            playerY+=5;
+            ctx.drawImage(img, playerX, playerY, 50, 50);
             break;
-        case 37:
-            game.save();
-            game.translate(-5,0);
-            game.restore();
+        case 'ArrowLeft':
+            game.clearRect(-300,-300,canvas.width, canvas.height);
+            ctx.fillRect(-300,-300,600,600);
+            playerX-=5;
+            ctx.drawImage(img, playerX, playerY, 50, 50);
             break;
-        case 39:
-            game.save();
-            game.translate(5, 0);
-            game.restore();
+        case 'ArrowRight':
+            game.clearRect(-300,-300,canvas.width, canvas.height);
+            ctx.fillRect(-300,-300,600,600);
+            playerX+=5;
+            ctx.drawImage(img, playerX, playerY, 50, 50);
             break;
         default:
     }
